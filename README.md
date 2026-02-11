@@ -1,36 +1,193 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🎬 Movie Recommendation App
+📌 Project Overview
 
-## Getting Started
+The Movie Recommendation App is a dynamic web application built with Next.js and TypeScript that allows users to browse trending movies and save their favorite selections.
 
-First, run the development server:
+This project demonstrates real-world frontend development skills, including API integration, dynamic routing, local data storage, reusable component design, and responsive UI implementation.
 
-```bash
+The application fetches live movie data from The Movie Database (TMDB) API and provides an interactive and seamless browsing experience.
+
+🎯 Project Objectives
+
+This project was developed to:
+
+Integrate and consume data from a third-party API (TMDB)
+
+Implement dynamic routing using Next.js
+
+Enable user personalization through local storage
+
+Build reusable and scalable components
+
+Design a responsive and interactive user interface
+
+Follow proper Git commit workflow and version control practices
+
+
+
+🛠️ Technologies Used
+
+Next.js – Server-side rendering and routing
+
+TypeScript – Type safety and scalable development
+
+Styled Components – Component-based styling
+
+TMDB API – Fetching movie data
+
+Local Storage – Saving user favorite movies
+
+Vercel / Netlify – Deployment
+
+✨ Key Features
+1️⃣ API Integration
+
+Fetches trending movies dynamically from TMDB API
+
+Handles loading and error states properly
+
+Displays real-time movie data
+
+2️⃣ Dynamic Routing
+
+Implements dynamic movie detail pages using Next.js routing
+
+Each movie has its own dedicated page
+
+Optimized navigation and rendering
+
+3️⃣ Save Favorite Movies
+
+Users can save movies to their favorites
+
+Favorites are stored locally using browser local storage
+
+Dedicated favorites section for easy management
+
+4️⃣ Responsive & Interactive UI
+
+Responsive grid layout for movie cards
+
+Hover effects and smooth transitions
+
+Mobile-friendly design using media queries
+
+📂 Project Structure
+movie-recommendation-app/
+│
+├── components/
+│   ├── MovieCard.tsx
+│   └── Layout.tsx
+│
+├── lib/
+│   └── api.ts
+│
+├── pages/
+│   ├── index.tsx
+│   ├── movie/
+│   │   └── [id].tsx
+│   └── favorites.tsx
+│
+├── styles/
+├── .env.local
+└── README.md
+
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/favouriweala/movie-recommendation-app.git
+cd movie-recommendation-app
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Set Up Environment Variables
+
+Create a .env.local file in the root directory:
+
+NEXT_PUBLIC_TMDB_API_KEY=your_tmdb_api_key_here
+
+
+You can get your API key from:
+https://www.themoviedb.org/settings/api
+
+⚠️ Do not commit your .env.local file.
+
+4️⃣ Run the Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+🔄 Git Commit Workflow
 
-To learn more about Next.js, take a look at the following resources:
+This project follows a structured commit format:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+feat: for new features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+fix: for bug fixes
 
-## Deploy on Vercel
+style: for styling improvements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+docs: for documentation updates
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Example commits:
+
+feat: initialize Next.js project with TypeScript
+feat: integrate TMDB API for fetching trending movies
+feat: implement dynamic movie detail pages
+feat: add functionality to save favorite movies
+style: design responsive UI using Styled Components
+fix: resolve rendering issues on dynamic pages
+docs: add API setup and usage instructions
+
+📊 Evaluation Criteria Coverage
+✅ Functionality
+
+Successfully fetches and displays trending movies
+
+Implements dynamic routing for movie details
+
+Allows saving and managing favorite movies
+
+✅ Code Quality
+
+Uses TypeScript for type safety
+
+Modular and reusable components
+
+Clean and well-structured folder organization
+
+✅ User Experience
+
+Responsive across devices
+
+Smooth navigation between pages
+
+Interactive and visually appealing movie cards
+
+✅ Version Control
+
+Regular, descriptive commits
+
+Organized repository structure
+
+Proper documentation
+
+📈 Future Improvements
+
+Add search functionality
+
+Add movie genre filtering
+
+Implement user authentication
+
+Store favorites in a backend database
+
+Add dark mode support
+
+👩🏽‍💻 Author
+
+Nkeiruka Iweala
+Software Engineer solving real-world problems with code.
