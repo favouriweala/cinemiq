@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 const TMDB_BASE = "https://api.themoviedb.org/3";
 
 export interface CinemiqMovie {
@@ -10,12 +8,6 @@ export interface CinemiqMovie {
   overview: string;
   vote_average: number;
 }
-
-type ApiResult<T> = {
-  data?: T;
-  error?: string;
-  loading: boolean;
-};
 
 function getApiKey(): string {
   const key = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -75,58 +67,20 @@ export async function fetchCinemiqMovieById(id: number): Promise<CinemiqMovie> {
 }
 
 /**
- * React hook to load trending movies with loading and error states.
+ * Fetch top-rated movies from TMDB.
+ * Throws on fatal errors; otherwise returns an array of `CinemiqMovie`.
  */
-export function useCinemiqTrending() {
-  const [state, setState] = useState<ApiResult<CinemiqMovie[]>>({ loading: true });
+export async function fetchCinemiqTopRated(): Promise<CinemiqMovie[]> {
+  const key = getApiKey();
+  const url = `${TMDB_BASE}/movie/top_rated?api_key=${encodeURIComponent(key)}`;
 
-  useEffect(() => {
-    let cancelled = false;
-    setState({ loading: true });
+  const res = await fetch(url);
+  if (!res.ok) {
+    const msg = await res.text().catch(() => res.statusText);
+    throw new Error(`TMDB fetch error (${res.status}): ${msg}`);
+  }
 
-    fetchCinemiqTrending()
-      .then((data) => {
-        if (!cancelled) setState({ data, loading: false });
-      })
-      .catch((err: any) => {
-        if (!cancelled) setState({ error: err?.message ?? String(err), loading: false });
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  return state;
-}
-
-/**
- * React hook to load a single movie by id with loading and error states.
- */
-export function useCinemiqMovie(id?: number | null) {
-  const [state, setState] = useState<ApiResult<CinemiqMovie>>({ loading: Boolean(id) });
-
-  useEffect(() => {
-    if (!id) {
-      setState({ loading: false, data: undefined });
-      return;
-    }
-
-    let cancelled = false;
-    setState({ loading: true });
-
-    fetchCinemiqMovieById(id)
-      .then((data) => {
-        if (!cancelled) setState({ data, loading: false });
-      })
-      .catch((err: any) => {
-        if (!cancelled) setState({ error: err?.message ?? String(err), loading: false });
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [id]);
-
-  return state;
+  const json = await res.json();
+  if (!json || !Array.isArray(json.results)) return [];
+  return json.results.map(mapToCinemiqMovie);
 }

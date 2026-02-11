@@ -3,7 +3,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useCinemiqMovie, CinemiqMovie } from "../lib/cinemiq";
+import { useCinemiqMovie } from "../lib/cinemiq.client";
+import type { CinemiqMovie } from "../lib/cinemiq";
 
 // style: convert movie details to styled-components (responsive, mobile-first)
 interface Props {
@@ -86,6 +87,20 @@ const FavoriteButton = styled.button`
   &:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(124,58,237,0.2); }
 `;
 
+const LoadingState = styled.div`
+  padding: 5rem 0;
+  text-align: center;
+  color: #9fb0c8;
+  font-weight: 500;
+`;
+
+const ErrorState = styled.div`
+  padding: 5rem 0;
+  text-align: center;
+  color: #ff7b7b;
+  font-weight: 600;
+`;
+
 export default function CinemiqMovieDetails({ id }: Props) {
   const { data, loading, error } = useCinemiqMovie(id);
   const [saved, setSaved] = useState(false);
@@ -125,19 +140,19 @@ export default function CinemiqMovieDetails({ id }: Props) {
   };
 
   if (loading) {
-    return <div style={{ padding: "5rem 0", textAlign: "center", color: "#9fb0c8" }}>Loading movie…</div>;
+    return <LoadingState>Loading movie…</LoadingState>;
   }
 
   if (error) {
     return (
-      <div style={{ padding: "5rem 0", textAlign: "center" }}>
-        <p style={{ color: "#ff7b7b" }}>Error loading movie: {error}</p>
-      </div>
+      <ErrorState>
+        Error loading movie: {error}
+      </ErrorState>
     );
   }
 
   if (!data) {
-    return <div style={{ padding: "5rem 0", textAlign: "center", color: "#9fb0c8" }}>Movie not found.</div>;
+    return <LoadingState>Movie not found.</LoadingState>;
   }
 
   return (

@@ -2,8 +2,13 @@ import Head from "next/head";
 import React from "react";
 import CinemiqLayout from "../../../components/CinemiqLayout";
 import dynamic from "next/dynamic";
+import styled from "styled-components";
 
 const CinemiqMovieDetails = dynamic(() => import("../../../components/CinemiqMovieDetails"), { ssr: false });
+
+const DetailWrapper = styled.div`
+  padding: 20px 0;
+`;
 
 type Params = { params: { id: string } };
 
@@ -17,9 +22,9 @@ export default function Page({ params }: Params) {
       </Head>
 
       <CinemiqLayout>
-        <div className="py-6">
+        <DetailWrapper>
           <CinemiqMovieDetails id={id} />
-        </div>
+        </DetailWrapper>
       </CinemiqLayout>
     </>
   );
