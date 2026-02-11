@@ -1,3 +1,4 @@
+import { env } from "process";
 const TMDB_BASE = "https://api.themoviedb.org/3";
 
 export interface CinemiqMovie {
@@ -11,6 +12,7 @@ export interface CinemiqMovie {
 
 function getApiKey(): string {
   const key = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+
   if (!key) throw new Error("NEXT_PUBLIC_TMDB_API_KEY is not defined");
   return key;
 }

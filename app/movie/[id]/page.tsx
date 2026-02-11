@@ -4,16 +4,17 @@ import CinemiqLayout from "../../../components/CinemiqLayout";
 import dynamic from "next/dynamic";
 import styled from "styled-components";
 
-const CinemiqMovieDetails = dynamic(() => import("../../../components/CinemiqMovieDetails"), { ssr: false });
+import CinemiqMovieDetails from "../../../components/CinemiqMovieDetails";
 
 const DetailWrapper = styled.div`
   padding: 20px 0;
 `;
 
-type Params = { params: { id: string } };
+type Params = { params: { id: string } | Promise<{ id: string }> };
 
-export default function Page({ params }: Params) {
-  const id = Number(params.id);
+export default async function Page({ params }: Params) {
+  const resolved = await params;
+  const id = Number(resolved.id);
 
   return (
     <>

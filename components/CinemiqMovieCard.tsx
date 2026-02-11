@@ -59,7 +59,7 @@ const Meta = styled.div`
   color: #9fb0c8;
 `;
 
-const DetailsLink = styled.a`
+const DetailsLink = styled.span`
   display: inline-block;
   margin-top: 8px;
   padding: 8px 12px;
@@ -98,7 +98,7 @@ export default function CinemiqMovieCard({ movie, className }: Props) {
         <Title>{movie.title}</Title>
         <Meta>{movie.release_date ?? "Unknown release"}</Meta>
 
-        <Link href={`/movie/${movie.id}`} passHref legacyBehavior>
+        <Link href={`/movie/${movie.id}`}>
           <DetailsLink>View Details</DetailsLink>
         </Link>
       </Content>
