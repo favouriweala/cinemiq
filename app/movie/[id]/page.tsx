@@ -19,7 +19,7 @@ export default async function Page({ params }: Params) {
   return (
     <>
       <Head>
-        <title>Cinemiq — Movie {params.id}</title>
+        <title>Cinemiq — Movie {resolved.id}</title>
       </Head>
 
       <CinemiqLayout>
